@@ -3,6 +3,7 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const app = express();
 const Pusher = require("pusher");
+const PORT = process.env.PORT || 8080
 
 //initialize Pusher with your appId, key, secret and cluster
 const pusher = new Pusher({
@@ -39,7 +40,7 @@ app.use((req, res, next) => {
 });
 
 // Set port to be used by Node.js
-app.set("port", 5000)
+app.set(PORT)
 
 app.get("/", (req, res) => {
   res.send("Welcome");
@@ -54,6 +55,6 @@ app.post("/prices/new", (req, res) => {
   res.sendStatus(200);
 });
 
-app.listen(app.get("port"), () => {
-  console.log("Node app is running on port", app.get("port"));
+app.listen(app.get(PORT), () => {
+  console.log("Node app is running on port", app.get(PORT));
 });
